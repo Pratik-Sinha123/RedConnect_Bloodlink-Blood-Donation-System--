@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-const port = 3177;
+const port = process.env.PORT || 3177;
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://redconnect-bloodlink-blood-donation-953a.onrender.com"],
     credentials: true,
   })
 );
