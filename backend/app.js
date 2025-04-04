@@ -4,11 +4,12 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 10000;
 
-dotenv.config();
-
+// Middleware
 app.use(cookieParser());
 app.use(express.json());
 app.use(
@@ -18,6 +19,7 @@ app.use(
   })
 );
 
+// MongoDB connection
 mongoose.connect(
   process.env.CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
@@ -26,11 +28,13 @@ mongoose.connect(
   }
 );
 
+// Routes
 app.use("/auth", require("./routers/authRouter"));
 app.use("/user", require("./routers/userRouter"));
 app.use("/bank", require("./routers/bankRouter"));
 app.use("/camps", require("./routers/campRouter"));
 
-app.listen(port, () =>
-  console.log(`Server running at http://localhost:${port}`)
+// Listen only once, bind to 0.0.0.0 for Render
+app.listen(port, "0.0.0.0", () =>
+  console.log(`Server running at http://0.0.0.0:${port}`)
 );
