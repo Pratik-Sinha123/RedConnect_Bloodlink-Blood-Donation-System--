@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://redconnect-bloodlink-blood-donation-953a.onrender.com"],
+    origin: ["https://redconnect-bloodlink-blood-donation-8afa.onrender.com"],
     credentials: true,
   })
 );
